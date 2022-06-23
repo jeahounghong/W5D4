@@ -17,10 +17,11 @@ class Course < ApplicationRecord
     )
     
     has_many :enrolled_users, through: :enrollments, source: :user
-    has_one(:prerequisite,
+    belongs_to(:prerequisite,
         class_name: :Course,
-        primary_key: :prereq_id,
-        foreign_key: :id
+        primary_key: :id,
+        foreign_key: :prereq_id,
+        optional: true
     )
 
     belongs_to(:instructor,
